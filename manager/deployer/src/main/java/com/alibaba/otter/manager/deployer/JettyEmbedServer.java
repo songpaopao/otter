@@ -46,15 +46,8 @@ public class JettyEmbedServer {
         XmlConfiguration configuration = new XmlConfiguration(configXml.getInputStream());
         server = (Server) configuration.configure();
 
-        //        Integer port = getPort();
-        //        if (port != null && port > 0) {
-        //            Connector[] connectors = server.getConnectors();
-        //            for (Connector connector : connectors) {
-        //                connector.setPort(port);
-        //            }
-        //        }
         Handler handler = server.getHandler();
-        if (handler != null && handler instanceof WebAppContext) {
+        if (handler instanceof WebAppContext) {
             WebAppContext webAppContext = (WebAppContext) handler;
             webAppContext.setResourceBase(JettyEmbedServer.class.getResource("/webapp").toString());
         }
